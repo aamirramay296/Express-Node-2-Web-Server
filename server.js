@@ -2,7 +2,7 @@ const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
 
-const port = process.env.port || 3000; // config app with Heroku and local as well
+const port = process.env.PORT || 3000; // config app with Heroku and local as well
 
 var app = express();
 hbs.registerPartials(__dirname + '/views/partials'); 
@@ -42,6 +42,7 @@ app.use(express.static(__dirname + '/public'));
 hbs.registerHelper('currentYear', () => {
    return new Date().getFullYear(); 
 });
+//https://frozen-escarpment-54965.herokuapp.com/
 
 hbs.registerHelper('screamIt', (text) => {
    return text.toUpperCase(); 
