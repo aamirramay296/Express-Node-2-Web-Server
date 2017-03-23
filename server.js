@@ -2,6 +2,8 @@ const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
 
+const port = process.env.port || 3000; // config app with Heroku and local as well
+
 var app = express();
 hbs.registerPartials(__dirname + '/views/partials'); 
 app.set('view engine', 'hbs');  
@@ -12,7 +14,6 @@ app.set('view engine', 'hbs');
 // next exist u could tell ur middleware function is done 
 // u could hav as mush as middleware u like , register to single app
 // for eg we aleady hav a middleware that serves up the directory
-
 
 //everything thats comes from client is store in the request (req) ...
 
@@ -29,11 +30,13 @@ app.use((req,res,next) => {
 });
 
 /**this is a middle ware .... */
+/*
 app.use((req,res,next) => {
     res.render('maintenance.hbs');
-    
+    //https://github.com/aamirramay296/Express-Node-2-Web-Server
 });
-
+*/
+//SHA256:E7hxuJo7prvN+PoRIZ3GxOlf9jQIsrZpPP5hD73/pxc aamir.ramay1@gmail.com
 app.use(express.static(__dirname + '/public'));
 
 hbs.registerHelper('currentYear', () => {
@@ -66,7 +69,7 @@ app.get('/bad', (req,res) => {
    });
 });
 
-app.listen(3000, () => {
-    console.log('Server is up on port 3000');
+app.listen(port, () => {
+    console.log(`Server is up on port ${port}`);
 }); 
 
